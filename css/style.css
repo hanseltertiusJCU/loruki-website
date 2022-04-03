@@ -1,0 +1,470 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+
+/**
+:root refers to root element
+
+*/
+:root {
+    /* How to define CSS Variables, initially we use -- */
+    --primary-color: #047aed;
+    --secondary-color: #1c3fa8;
+    --dark-color: #002240;
+    --light-color: #f4f4f4;
+    --success-color: #5cb85c;
+    --error-color: #d9534f;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+ul {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+h1,
+h2 {
+    font-weight: 300;
+    line-height: 1.2;
+    margin: 10px 0;
+}
+
+p {
+    margin: 10px 0;
+}
+
+img {
+    width: 100%;
+}
+
+code, 
+pre {
+    background: #333;
+    color: #fff;
+    padding: 10px;
+}
+
+.hidden {
+    visibility: hidden;
+    height: 0;
+}
+
+/* Navbar */
+.navbar {
+    /* How to use variable with var() */
+    background-color: var(--primary-color);
+    color: #fff;
+    height: 70px;
+}
+
+.navbar ul {
+    display: flex;
+}
+
+/*
+
+: refers to CSS pseudo class, which specifies the style
+in the specific state of element
+
+*/
+.navbar a:hover {
+    border-bottom: 2px #fff solid;
+}
+
+.navbar a {
+    color: #fff;
+    padding: 10px;
+    /* represents vertical and horizontal values */
+    margin: 0 5px;
+}
+
+.navbar .flex {
+    justify-content: space-between;
+}
+
+/* Showcase */
+.showcase {
+    height: 400px;
+    background-color: var(--primary-color);
+    color: #fff;
+    /* Position element relative to current position, literally we can move the element */
+    position: relative;
+}
+
+.showcase h1 {
+    font-size: 40px;
+}
+
+.showcase p {
+    margin: 20px 0;
+}
+
+.showcase .grid {
+    /* to make the element go outside the container */
+    overflow: visible;
+    grid-template-columns: 55% 45%;
+    gap: 30px;
+}
+
+.showcase-text {
+    animation: slideInFromLeft 1s ease-in;
+}
+
+.showcase-form {
+    position: relative;
+    /* top used to move the element from the top */
+    top: 60px;
+    height: 350px;
+    width: 400px;
+    padding: 40px;
+    /* z-index is to make the element stay in the front */
+    z-index: 100;
+    /** 
+        justify-self is used to align the element by itself on the main axis 
+
+        justify-self is only being used in CSS Grid, unlike flexbox
+    */
+    justify-self: flex-end;
+    animation: slideInFromRight 1s ease-in;
+}
+
+.showcase-form .form-control {
+    margin: 30px 0;
+}
+
+/** 
+    we tried to style elements by certain attribute
+
+    we used : [attribute="value"]
+*/
+.showcase-form input[type="text"],
+.showcase-form input[type="email"] {
+    border: 0;
+    border-bottom: 1px solid #b4becb;
+    width: 100%;
+    padding: 3px;
+    font-size: 16px;
+}
+
+.showcase-form input:focus {
+    /* outline is located outside of the border */
+    outline: none;
+}
+
+/**
+
+:: refers to pseudo elements, 
+it is used to style the part of the element
+
+*/
+.showcase::before,
+.showcase::after {
+    content: '';
+    /*absolute refers to position the element relative to its parent */
+    position: absolute;
+    height: 100px;
+    /** 
+        - negative value is to push the value towards the direction 
+        - bottom starts from the bottom most part of the element
+    */
+    bottom: -70px;
+    right: 0;
+    left: 0;
+    background: #fff;
+    /* how to make the element become not straight */
+    transform: skewY(-3deg);
+    /* how to be able to use into Chrome / Safari */
+    -webkit-transform: skewY(-3deg);
+    /* how to be able to use into Mozilla Firefox */
+    -moz-transform: skewY(-3deg);
+    /* how to be able to use into Internet Explorer / Edge */
+    -ms-transform: skewY(-3deg);
+}
+
+/* Stats */
+.stats {
+    padding-top: 100px;
+    animation: slideInFromBottom 1s ease-in;
+}
+
+.stats-heading {
+    max-width: 500px;
+    margin: auto;
+}
+
+.stats .grid h3 {
+    font-size: 35px;
+}
+
+.stats .grid .p {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* CLI */
+.cli .grid {
+    /* grid-template columns refers to creating horizontal space in a vertical area (row) */
+    grid-template-columns: repeat(3, 1fr);
+    /* grid-template-rows refers to creating vertical space in a horizontal area (column) */
+    grid-template-rows: repeat(2, 1fr);
+}
+
+/**
+
+> refers to the direct child selector
+
+* refers to anything
+
+first-child refers to styling the first child of the element
+
+*/
+.cli .grid>*:first-child {
+    /** 
+    grid-column / grid-row refers to the how grid item takes vertical / horizontal space
+
+    the value is : starting point / end point or how many space does it take 
+    */
+    grid-column: 1 / span 2;
+    grid-row: 1 / span 2;
+}
+
+/* Cloud */
+.cloud .grid {
+    grid-template-columns: 4fr 3fr;
+}
+
+/* Languages */
+.languages .flex {
+    flex-wrap: wrap;
+}
+
+.languages .card {
+    text-align: center;
+    /* shorthand for : top bottom horizontal */
+    margin: 18px 10px 40px;
+    /**
+    transition is the property of CSS Animation
+
+    it is the shorthand for : 
+    - transition-property
+    - transition-duration
+    - transition-timing-function
+    - transition-delay
+    */
+    transition: transform 0.2s ease-in;
+}
+
+.languages .card h4 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.languages .card:hover {
+    /** translateY value : 
+    negative : upwards
+    positive : downwards
+    */
+    transform: translateY(-15px);
+}
+
+/* Features */
+.features-head img, .docs-head img {
+    width: 200px;
+    justify-self: flex-end;
+}
+
+.features-sub-head img {
+    width: 300px;
+    justify-self: flex-end;
+}
+
+.features-main .card > i {
+    margin-right: 20px;
+}
+
+.features-main .grid {
+    padding: 30px;
+}
+
+.features-main .grid > *:first-child {
+    grid-column: 1 / span 3;
+}
+
+.features-main .grid > *:nth-child(2) {
+    grid-column: 1 / span 2;
+}
+
+/* Docs */
+.docs-main h3 {
+    margin: 20px 0;
+}
+
+.docs-main .grid {
+    grid-template-columns: 1fr 2fr;
+    /**
+    unlike flexbox, the alignment of item in CSS Grid are : 
+
+    justify-content : the grid container will align horizontally
+    justify-self : the grid item itself will align horizontally
+    align-items : the grid container will align vertically
+    align-self : the grid item itself will align vertically
+    */
+    align-items: flex-start;
+}
+
+.docs-main nav li {
+    font-size: 17px;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    border-bottom: 1px #ccc solid;
+}
+
+.docs-main a:hover {
+    font-weight: bold;
+}
+
+/* Footer */
+.footer .social a {
+    margin: 0 10px;
+}
+
+/* Animations */
+@keyframes slideInFromLeft {
+    0% {
+        /* - value in translateX refers to the left side */
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInFromRight {
+    0% {
+        /* positive value in translateX refers to the right side */
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInFromTop {
+    0% {
+        /* - value in translateY refers to the top side */
+        transform: translateY(-100%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInFromBottom {
+    0% {
+        /* positive value in translateY refers to the bottom side */
+        transform: translateY(100%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/**
+For the smaller device, normally we have to
+align the layouts vertically
+*/
+
+/* Tablets and under */
+@media(max-width: 768px) {
+
+    .grid,
+    .showcase .grid,
+    .stats .grid,
+    .cli .grid,
+    .cloud .grid,
+    .features-main .grid,
+    .docs-main .grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+    }
+
+    .showcase {
+        height: auto;
+    }
+
+    .showcase-text {
+        text-align: center;
+        margin-top: 40px;
+        animation: slideInFromTop 1s ease-in;
+    }
+
+    .showcase-form {
+        justify-self: center;
+        margin: auto;
+        animation: slideInFromBottom 1s ease-in;
+    }
+
+    .cli .grid > *:first-child {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .features-head,
+    .features-sub-head,
+    .docs-head {
+        text-align: center;
+    }
+
+    .features-head img,
+    .features-sub-head img,
+    .docs-head img {
+        justify-self: center;
+    }
+
+    /**
+    
+    , keyword refers to applying multiple CSS Selectors
+
+    it is for avoid using the same attribute values in multiple
+    CSS Selectors
+
+    */
+    .features-main .grid > *:first-child,
+    .features-main .grid > *:nth-child(2) {
+        grid-column: 1;
+    }
+
+}
+
+/* Mobile */
+@media(max-width: 500px) {
+    .navbar {
+        height: 110px;
+    }
+
+    .navbar .flex {
+        flex-direction: column;
+    }
+
+    .navbar ul {
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+}
